@@ -1053,8 +1053,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a331805347588fe4a8161c8875d24396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ServerAddress: 192.168.1.33
-  LocalAddress: 192.168.1.33
+  ServerAddress: 127.0.0.1
+  LocalAddress: 127.0.0.1
   ConnectionType: 1
   SkeletonCoordinates: 0
   BoneNamingConvention: 0
