@@ -516,7 +516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StreamingClient: {fileID: 1820418780}
-  RigidBodyId: 2
+  RigidBodyId: 8
   NetworkCompensation: 1
 --- !u!135 &766974923
 SphereCollider:
@@ -633,7 +633,7 @@ Camera:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -990,7 +990,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ServerAddress: 127.0.0.1
   LocalAddress: 127.0.0.1
-  ConnectionType: 0
+  ConnectionType: 1
   SkeletonCoordinates: 0
   BoneNamingConvention: 0
   DrawMarkers: 1
@@ -1046,7 +1046,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StreamingClient: {fileID: 1820418780}
-  RigidBodyId: 1
+  RigidBodyId: 999
   NetworkCompensation: 1
 --- !u!65 &1859971813
 BoxCollider:
@@ -1206,7 +1206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StreamingClient: {fileID: 1820418780}
-  RigidBodyId: 3
+  RigidBodyId: 0
   NetworkCompensation: 1
 --- !u!4 &3163951490560853457
 Transform:
