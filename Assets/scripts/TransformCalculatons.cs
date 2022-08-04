@@ -1,4 +1,5 @@
-﻿using System.Collections;
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,33 +33,72 @@ public class TransformCalculatons : MonoBehaviour
     private Vector4 col2 = new Vector4();
     private Vector4 col3 = new Vector4();
     private Vector4 col4 = new Vector4();
-
+    private int counter = 0;
+    private List<Vector3> positions = new List<Vector3>() { new Vector3(0.125f, 0, .7f), new Vector3(.3f, 0, .7f), new Vector3(.4f, -.2f, .7f) };
+    private List<Quaternion> rotations = new List<Quaternion>() { Quaternion.Euler(30,20,45), Quaternion.Euler(30, 20, 45) };
+    private int limit = 10;
+    public List<GameObject> targets;
+    private List<Transform> transforms;
+    public GameObject anchor;
     // This is the code for the transform calculation NOT USING HEADSET
+    private void Start()
+    {
+        transforms = new List<Transform>();
+        
+    }
     void Update()
     {
-        if (Input.GetKeyDown("h")) {
+        if (Input.GetKeyDown("i"))
+        {
+            foreach (GameObject target in targets)
+            {
+                transforms.Add(target.transform);
+
+            }
+            anchor.GetComponent<MeshRenderer>().enabled = !anchor.GetComponent<MeshRenderer>().enabled;
+            GuideCube.transform.position = transforms[counter].position;
+            GuideCube.transform.rotation = transforms[counter].rotation;
+            foreach (var item in targets)
+            {
+                item.SetActive(false);
+            }
+            GuideCube.SetActive(true);
+
+
+        }
+        if (Input.GetKeyDown("h"))
+        {
             MatchCube.GetComponent<MeshRenderer>().enabled = !MatchCube.GetComponent<MeshRenderer>().enabled;
         }
+        
         //Calibration Data points by lining up the real world OptiCube to the virtual "Guide Cube" (blue wireframe one)
         if (Input.GetKeyDown("space"))
         {
             Debug.Log("space pressed");
             Matrix4x4 wTo = Matrix4x4.TRS(OptiCube.transform.position, OptiCube.transform.rotation, OptiCube.transform.localScale);
-            //Matrix4x4 wTo_LH = convertRHtoLH(wTo);
+            //Matrix4x4 wTo_LH = convertRHtoLH(wTo); //uncommented for LH -mb
 
-            Matrix4x4 cTg = Matrix4x4.TRS(GuideCube.transform.position, GuideCube.transform.rotation,  GuideCube.transform.localScale);
+            Matrix4x4 cTg = Matrix4x4.TRS(GuideCube.transform.position, GuideCube.transform.rotation, GuideCube.transform.localScale);
 
             //HL2GuideCube * OptiCube2Optitrack 
-            cTw_List.Add(cTg * wTo.inverse);
+            cTw_List.Add(cTg * wTo.inverse); //commented for LH -mb
+           //cTw_List.Add(cTg * wTo_LH.inverse); // added for LH -mb
             Debug.Log("Single Sample Transform: \n" + cTw_List[cTw_List.Count - 1].ToString());
- 
+
             //just to only have one sample for testing purposes
             //cTw_avg = cTg * wTo.inverse;
             //averageAquired = true;
+            counter++;
+            if(counter < transforms.Count)
+            {
+                GuideCube.transform.position = transforms[counter].position;
+                GuideCube.transform.rotation = transforms[counter].rotation;
+            }
+           
         }
-        
+
         //Once have sufficient sample size,
-        if (cTw_List.Count > 3 )//&& !averageAquired)
+        if (cTw_List.Count > 9)//&& !averageAquired)
         {
             //Create the average transformation matrix
             for (int row = 0; row < 4; row++)
@@ -75,16 +115,18 @@ public class TransformCalculatons : MonoBehaviour
             averageAquired = true;
 
         }
-        
+
 
         //If you have the average tranformation matrix, use it to position "Match cube" (the black wireframe one)
         if (averageAquired)
         {
             wTo = Matrix4x4.TRS(OptiCube.transform.position, OptiCube.transform.rotation, OptiCube.transform.localScale);
-            //Matrix4x4 wTo_LH = convertRHtoLH(wTo);
+            //Matrix4x4 wTo_LH = convertRHtoLH(wTo); //commented for LH -mb
 
-            cTo = cTw_avg * wTo;
-            newPosition = new Vector3(cTo.m03, cTo.m13, cTo.m23);
+            cTo = cTw_avg * wTo; //commented for LH -mb
+            //cTo = cTw_avg * wTo_LH; //added for LH -mb
+            newPosition = new Vector3(cTo.m03, cTo.m13, cTo.m23); 
+
             newRotation = cTo.rotation;
             MatchCube.transform.localScale = scale;
             MatchCube.transform.SetPositionAndRotation(newPosition, newRotation);
@@ -105,9 +147,9 @@ public class TransformCalculatons : MonoBehaviour
 
         }
     }
-
-    /* This is the code for the transform calculation using the tracket headset as well.
-    * 
+   
+    // This is the code for the transform calculation using the tracket headset as well.
+    /*
     // Update is called once per frame
     void Update()
     {
@@ -115,25 +157,24 @@ public class TransformCalculatons : MonoBehaviour
         {
             Debug.Log("space pressed");
             Matrix4x4 wTo = Matrix4x4.TRS(OptiCube.transform.position, OptiCube.transform.rotation, OptiCube.transform.localScale);
-            //Matrix4x4 wTo_LH = convertRHtoLH(wTo);
-
+            //Matrix4x4 wTo_LH = convertRHtoLH(wTo); //uncommented for LH
+            Debug.Log(" opticube Transform: \n" + wTo.ToString());
             Matrix4x4 wTh = Matrix4x4.TRS(HoloLens.transform.position, HoloLens.transform.rotation, HoloLens.transform.localScale);
-            //Matrix4x4 wTh_LH = convertRHtoLH(wTo);
-
+            //Matrix4x4 wTh_LH = convertRHtoLH(wTo); //uncommented for LH
             Matrix4x4 cTg = Matrix4x4.TRS(GuideCube.transform.position, GuideCube.transform.rotation, GuideCube.transform.localScale);
-
-            //cTh = cTg * (wTh_LH.inverse * wTo_LH).inverse;
-            cTh = cTg * (wTh.inverse * wTo).inverse;
+            //cTh = cTg * (wTh_LH.inverse * wTo_LH).inverse; //uncommented for LH
+            cTh = cTg * (wTh.inverse * wTo).inverse; //commented for LH
             averageAquired = true;
+            Debug.Log(" Transform: \n" + cTh.ToString());
         }
         if (averageAquired)
         {
             Matrix4x4 wTo = Matrix4x4.TRS(OptiCube.transform.position, OptiCube.transform.rotation, OptiCube.transform.localScale);
-            //Matrix4x4 wTo_LH = convertRHtoLH(wTo);
+           // Matrix4x4 wTo_LH = convertRHtoLH(wTo); //uncommented for LH
             Matrix4x4 wTh = Matrix4x4.TRS(HoloLens.transform.position, HoloLens.transform.rotation, HoloLens.transform.localScale);
-            //Matrix4x4 wTh_LH = convertRHtoLH(wTh);
-            //cTo = cTh * wTh_LH.inverse * wTo_LH;
-            cTo = cTh * wTh.inverse * wTo;
+           // Matrix4x4 wTh_LH = convertRHtoLH(wTh); //uncommented for LH
+            //cTo = cTh * wTh_LH.inverse * wTo_LH; //uncommented for LH
+            cTo = cTh * wTh.inverse * wTo; //commented for LH
             newPosition = new Vector3(cTo.m03, cTo.m13, cTo.m23);
             newRotation = cTo.rotation;
             MatchCube.transform.localScale = scale;
@@ -141,7 +182,6 @@ public class TransformCalculatons : MonoBehaviour
         }
     }
     */
-
     public Matrix4x4 convertRHtoLH(Matrix4x4 RH)
     {
         col1.Set(RH.m00, -RH.m10, RH.m20, 0);
@@ -152,3 +192,5 @@ public class TransformCalculatons : MonoBehaviour
         return LH;
     }
 }
+
+
