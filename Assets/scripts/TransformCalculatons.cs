@@ -1,5 +1,3 @@
-
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -35,7 +33,7 @@ public class TransformCalculatons : MonoBehaviour
     private Vector4 col4 = new Vector4();
     private int counter = 0;
     private List<Vector3> positions = new List<Vector3>() { new Vector3(0.125f, 0, .7f), new Vector3(.3f, 0, .7f), new Vector3(.4f, -.2f, .7f) };
-    private List<Quaternion> rotations = new List<Quaternion>() { Quaternion.Euler(30,20,45), Quaternion.Euler(30, 20, 45) };
+    private List<Quaternion> rotations = new List<Quaternion>() { Quaternion.Euler(30, 20, 45), Quaternion.Euler(30, 20, 45) };
     private int limit = 10; // can cite another work explaining 10 samples is the optimal amount
     public List<GameObject> targets;
     private List<Transform> transforms;
@@ -44,7 +42,7 @@ public class TransformCalculatons : MonoBehaviour
     private void Start()
     {
         transforms = new List<Transform>();
-        
+
     }
     void Update()
     {
@@ -70,7 +68,7 @@ public class TransformCalculatons : MonoBehaviour
         {
             MatchCube.GetComponent<MeshRenderer>().enabled = !MatchCube.GetComponent<MeshRenderer>().enabled;
         }
-        
+
         //Calibration Data points by lining up the real world OptiCube to the virtual "Guide Cube" (blue wireframe one)
         if (Input.GetKeyDown("space"))
         {
@@ -82,19 +80,19 @@ public class TransformCalculatons : MonoBehaviour
 
             //HL2GuideCube * OptiCube2Optitrack 
             cTw_List.Add(cTg * wTo.inverse); //commented for LH -mb
-           //cTw_List.Add(cTg * wTo_LH.inverse); // added for LH -mb
+                                             //cTw_List.Add(cTg * wTo_LH.inverse); // added for LH -mb
             Debug.Log("Single Sample Transform: \n" + cTw_List[cTw_List.Count - 1].ToString());
 
             //just to only have one sample for testing purposes
             //cTw_avg = cTg * wTo.inverse;
             //averageAquired = true;
             counter++;
-            if(counter < transforms.Count)
+            if (counter < transforms.Count)
             {
                 GuideCube.transform.position = transforms[counter].position;
                 GuideCube.transform.rotation = transforms[counter].rotation;
             }
-           
+
         }
 
         //Once have sufficient sample size,
@@ -125,7 +123,7 @@ public class TransformCalculatons : MonoBehaviour
 
             cTo = cTw_avg * wTo; //commented for LH -mb
             //cTo = cTw_avg * wTo_LH; //added for LH -mb
-            newPosition = new Vector3(cTo.m03, cTo.m13, cTo.m23); 
+            newPosition = new Vector3(cTo.m03, cTo.m13, cTo.m23);
 
             newRotation = cTo.rotation;
             MatchCube.transform.localScale = scale;
@@ -147,7 +145,7 @@ public class TransformCalculatons : MonoBehaviour
 
         }
     }
-   
+
     // This is the code for the transform calculation using the tracket headset as well.
     /*
     // Update is called once per frame

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ToolController : MonoBehaviour
 {
@@ -12,7 +10,7 @@ public class ToolController : MonoBehaviour
         float moveVertical = Input.GetAxis("Vertical");
         float moveInOut = Input.GetAxis("DepthWise");
 
-        transform.Translate(speed*moveInOut, speed*moveHorizontal, speed*moveVertical);
-             
+        transform.Translate(speed * moveInOut, speed * moveHorizontal, speed * moveVertical);
+
     }
 }

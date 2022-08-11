@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(MeshFilter))]
 public class MeshDeformerInputWithTool : MonoBehaviour
@@ -13,7 +11,7 @@ public class MeshDeformerInputWithTool : MonoBehaviour
 
     }
 
-    void Update ()
+    void Update()
     {
 
     }

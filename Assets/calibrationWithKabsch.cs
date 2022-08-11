@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Profiling;
 public class calibrationWithKabsch : MonoBehaviour
 {
     public Transform[] inPoints;
@@ -39,7 +38,7 @@ public class calibrationWithKabsch : MonoBehaviour
             inCentroid /= inTotal;
             refCentroid /= refTotal;
             Vector3 vec = inCentroid - refCentroid;
-            
+
             Calibration.transform.position = -vec;
             for (int i = 0; i < inPoints.Length; i++)
             {

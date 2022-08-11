@@ -3,12 +3,7 @@ guid: 904094895fe3a9b48ae2bec4ca2eb7e1
 ModelImporter:
   serializedVersion: 20300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ProbeWithoutMarkersMat
-    second: {fileID: 2100000, guid: b1a9efce1b1c7654186e3d1c13341c32, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
