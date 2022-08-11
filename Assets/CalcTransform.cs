@@ -14,10 +14,9 @@ public class CalcTransform : MonoBehaviour
     private List<Vector<double>> vecListDstCoM = new List<Vector<double>>();
 
     public GameObject srcContainer, dstContainer;
-    public GameObject frameByFrameRegistrationManager;
+
     public bool calibrated = false;
     public bool frameByFrame;
-    public GameObject parentProbe;
 
 
 
@@ -37,13 +36,14 @@ public class CalcTransform : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown("space") || (frameByFrame && calibrated))
-        {
+       /* if (Input.GetKeyDown("space") )
+        {*/
             if (Input.GetKeyDown("space"))
             {
                 calibrated = true;
             }
-
+            dstContainer.transform.position = Vector3.zero;
+            dstContainer.transform.rotation = Quaternion.identity;
             vecListSrc = srcContainer.GetComponent<fillMatrix>().TransVecList();
             vecListDst = dstContainer.GetComponent<fillMatrix>().TransVecList();
             Debug.Log(vecListSrc);
@@ -103,17 +103,13 @@ public class CalcTransform : MonoBehaviour
 
             // apply rotation and transformation to src gameobject
             //RotandTrans(testFidSrc, testFidDst, rot, tra);
-            if (frameByFrame)
-            {
-                RotandTransRigid(srcContainer, parentProbe, rotMat, rot, tra);
+            
 
-            }
-
-            else { RotandTransRigid(srcContainer, dstContainer, rotMat, rot, tra); }
+           RotandTransRigid(srcContainer, dstContainer, rotMat, rot, tra); 
 
             Debug.Log("end");
 
-        }
+       /* }*/
 
     }
     Matrix<double> GetRot(Matrix<double> rotdd, Vector<double> tradd, Svd<double> svd1)
@@ -186,7 +182,7 @@ public class CalcTransform : MonoBehaviour
         if (!double.IsNaN(newObjPos[0]) && !double.IsNaN(newObjPos[0]) && !double.IsNaN(newObjPos[0])){
             dstObj.transform.position = new Vector3((float)newObjPos[0], (float)newObjPos[1], (float)newObjPos[2]);
         }
- 
+       
         dstObj.transform.rotation = rotMat4;
     }
 
