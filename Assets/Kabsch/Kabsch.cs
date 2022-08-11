@@ -22,10 +22,10 @@ public class Kabsch : MonoBehaviour {
     }
 
     Matrix4x4 kabschTransform = solver.SolveKabsch(points, refPoints);
-    probe.transform.localPosition = kabschTransform.MultiplyPoint(Vector3.zero);
-    probe.transform.localRotation = kabschTransform.rotation;
+    probe.transform.position = kabschTransform.MultiplyPoint(Vector3.zero);
+    probe.transform.rotation = kabschTransform.rotation;
         for (int i = 0; i < inPoints.Length; i++) {
-      inPoints[i].localPosition = kabschTransform.MultiplyPoint(points[i]);
+      inPoints[i].position = kabschTransform.MultiplyPoint(points[i]);
     }
   }
 }

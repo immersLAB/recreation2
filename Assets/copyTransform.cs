@@ -16,7 +16,7 @@ public class copyTransform : MonoBehaviour
         string number = this.gameObject.name[this.gameObject.name.Length-1].ToString();
         if (GameObject.Find("(Measurement Probe  Marker: " + number + ")") != null)
         {
-            this.transform.position = GameObject.Find("(Measurement Probe  Marker: " + number + ")").transform.position;
+            this.transform.localPosition = GameObject.Find("(Measurement Probe  Marker: " + number + ")").transform.position;
         }
         Debug.Log("(Measurement Probe  Marker: " + number + ")");
        
