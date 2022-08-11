@@ -30,7 +30,7 @@ MonoBehaviour:
       Microsoft.MixedReality.Toolkit.Services.BoundarySystem
   xrsdkBoundarySystemType:
     reference: Microsoft.MixedReality.Toolkit.XRSDK.XRSDKBoundarySystem, Microsoft.MixedReality.Toolkit.Providers.XRSDK
-  boundaryVisualizationProfile: {fileID: 11400000, guid: 6d28cce596b44bd3897ca86f8b24e076, type: 2}
+  boundaryVisualizationProfile: {fileID: 11400000, guid: 71b2330b2d38da346bc4e705a1fd7bdb, type: 2}
   enableTeleportSystem: 1
   teleportSystemType:
     reference: Microsoft.MixedReality.Toolkit.Teleport.MixedRealityTeleportSystem,

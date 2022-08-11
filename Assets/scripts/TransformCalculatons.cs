@@ -36,7 +36,7 @@ public class TransformCalculatons : MonoBehaviour
     private int counter = 0;
     private List<Vector3> positions = new List<Vector3>() { new Vector3(0.125f, 0, .7f), new Vector3(.3f, 0, .7f), new Vector3(.4f, -.2f, .7f) };
     private List<Quaternion> rotations = new List<Quaternion>() { Quaternion.Euler(30,20,45), Quaternion.Euler(30, 20, 45) };
-    private int limit = 10;
+    private int limit = 10; // can cite another work explaining 10 samples is the optimal amount
     public List<GameObject> targets;
     private List<Transform> transforms;
     public GameObject anchor;
