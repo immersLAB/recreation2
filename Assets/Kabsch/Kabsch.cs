@@ -22,7 +22,7 @@ public class Kabsch : MonoBehaviour {
     }
 
     Matrix4x4 kabschTransform = solver.SolveKabsch(points, refPoints);
-    probe.transform.position = kabschTransform.MultiplyPoint(this.transform.position);
+    probe.transform.position = kabschTransform.MultiplyPoint(Vector3.zero);
     probe.transform.rotation = kabschTransform.rotation;
         for (int i = 0; i < inPoints.Length; i++) {
       inPoints[i].position = kabschTransform.MultiplyPoint(points[i]);
