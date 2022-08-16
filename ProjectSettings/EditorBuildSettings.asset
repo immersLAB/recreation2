@@ -12,17 +12,20 @@ EditorBuildSettings:
     path: Assets/Scenes/OptiToolsHL2001.unity
     guid: 4211aef0baf401b46aaf12f8a55b95e9
   - enabled: 0
-    path: Assets/Scenes/WithOptiTrackStreaming.unity
-    guid: 4d3ffc8efabee544fab971e64a9a55fb
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/kabschOpti.unity
-    guid: fcffdba745a51c94eb1b293643f8e729
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/kabsch.unity
-    guid: 69c29456a946e1f4088f7465cf70d3cb
-  - enabled: 1
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
     path: Assets/Scenes/kabschOptiwithCalib.unity
     guid: 4224ec5b242ac7b42b7b25c1e66138b7
+  - enabled: 1
+    path: Assets/Scenes/kabschOptiwithCalibandFemur.unity
+    guid: d64595a76b8cf2b48a69db1a9cba5a8d
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 6a1f5d1ab5ed131418ba5ffb83b1f7df, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 4847fb512a5022b409775b18c37b8646, type: 2}
