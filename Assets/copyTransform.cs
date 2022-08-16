@@ -16,7 +16,7 @@ public class copyTransform : MonoBehaviour
         {
             this.transform.localPosition = GameObject.Find("(Measurement Probe  Marker: " + number + ")").transform.position;
         }
-        Debug.Log("(Measurement Probe  Marker: " + number + ")");
+        //Debug.Log(this.transform.position.x);
 
 
     }
