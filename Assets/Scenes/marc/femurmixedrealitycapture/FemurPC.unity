@@ -922,6 +922,7 @@ MonoBehaviour:
   - {fileID: 605858588738741113}
   - {fileID: 763294445535800781}
   Calibration: {fileID: 1210408569}
+  CalibrationProbe: {fileID: 2445288961347884009}
 --- !u!4 &1210408571
 Transform:
   m_ObjectHideFlags: 0
