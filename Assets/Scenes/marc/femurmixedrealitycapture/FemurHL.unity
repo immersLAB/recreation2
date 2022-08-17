@@ -987,6 +987,7 @@ MonoBehaviour:
   Calibration: {fileID: 1210408569}
   CalibrationProbe: {fileID: 2445288961347884009}
   Tool: {fileID: 2714469883481479087}
+  Femur: {fileID: 0}
 --- !u!4 &1210408571
 Transform:
   m_ObjectHideFlags: 0
@@ -1821,7 +1822,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2445288961347884009}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1831,7 +1832,7 @@ Transform:
   - {fileID: 3695389547283376048}
   m_Father: {fileID: 0}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
 --- !u!54 &2714469883481479080
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1857,7 +1858,7 @@ MeshCollider:
   m_GameObject: {fileID: 2714469883481479087}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
@@ -1893,7 +1894,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 2714469883481479087}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1

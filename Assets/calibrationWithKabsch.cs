@@ -8,6 +8,7 @@ public class calibrationWithKabsch : MonoBehaviour
     public GameObject Calibration;
     public GameObject CalibrationProbe;
     public GameObject Tool;
+    public GameObject Femur;
     //Set up the Input Points
     void Start()
     {
@@ -68,7 +69,9 @@ public class calibrationWithKabsch : MonoBehaviour
         {
             inPoints[i].position = kabschTransform.MultiplyPoint(points[i]);
         }*/
-        //CalibrationProbe.SetActive(false);
+        CalibrationProbe.SetActive(false);
+        Femur.GetComponent<BoxCollider>().enabled = false;
+      
 
     }
 }
